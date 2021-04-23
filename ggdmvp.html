@@ -4,23 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
 <title>Google Drive Movie Player</title>
-<script>
-// ggdmvp v1.0 (2021/02/18)
 
+<!-- ggdmvp v1.2 (2021/03/22) -->
+<script src="./movie_data.js"></script>
+
+<script>
 const USE_LOCAL = false;
 
 // 動画データの設定
-const movies = [
-'1P0KOkdtR2dbPQdFgvfVTXkTe8q4zEXlz/10/水稀で「よくばり」',
-'1T8g3sc00IXhnvPOe2uvMd5JTiYoUS0qt/12/AB10で「毒占欲」',
-'1ptwp-j1f5zyy6VYPL33JZ5bd5pz6gUWC/7/アカガネで「キライ・キライ・ジガヒダイ！」',
-'1CVWfZY_Jwr_xzCpR15GfSnm9jw4iLdMN/4/Vacantie様で「MadLovers」',
-'10FgAiqk4XfXI7Nlg-B_hhBX8txK4ETCQ/6/アカガネで「少女ふぜゐ」',
-'1PK9jf70Gow7-londD7OiPj9MzNB4N1Ti/2/うに子と葵乃で「ロキ(みきとp)」',
-'1KxgCWLekpgHJRq92g3AeQiYIU7giD_pV/3/葵乃と蒐華で「乱躁滅裂ガール」',
-'199Ei6MdZK4fiSG9zCO8iwrIwpKfLTACQ/1/ズボン3人娘で「7(梅とら)」',
-]
-.map(function(data) {
+const movies = movie_data.map(function(data) {
 	let [ggd_id, info_id, name] = data.split('/');
 	let ggd_url = 'https://drive.google.com/uc?id=' + ggd_id;
 	let local_url = './video/' + name + '.mp4';
@@ -37,6 +29,7 @@ const movies = [
 // 動画情報へのリンクを作る
 function make_info_link(info_id)
 {
+	if (info_id == '--') { return ''; }
 	let url = 'https://acax.blog.fc2.com/blog-entry-' + info_id + '.html';
 	let name = '動画情報(' + info_id + ')';
 	let html = '→ <a href="' + url + '" target="info">' + name + '</a>';
@@ -461,3 +454,4 @@ select, input {
 </div>
 </body>
 </html>
+
