@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>Google Drive Movie Player</title>
+<script>
+// ggdmvp v1.0 (2021/02/18)
+
+const USE_LOCAL = false;
+
+// 動画データの設定
+const movies = [
+'1P0KOkdtR2dbPQdFgvfVTXkTe8q4zEXlz/10/水稀で「よくばり」',
+'1T8g3sc00IXhnvPOe2uvMd5JTiYoUS0qt/12/AB10で「毒占欲」',
+'1ptwp-j1f5zyy6VYPL33JZ5bd5pz6gUWC/7/アカガネで「キライ・キライ・ジガヒダイ！」',
+'1CVWfZY_Jwr_xzCpR15GfSnm9jw4iLdMN/4/Vacantie様で「MadLovers」',
+'10FgAiqk4XfXI7Nlg-B_hhBX8txK4ETCQ/6/アカガネで「少女ふぜゐ」',
+'1PK9jf70Gow7-londD7OiPj9MzNB4N1Ti/2/うに子と葵乃で「ロキ(みきとp)」',
+'1KxgCWLekpgHJRq92g3AeQiYIU7giD_pV/3/葵乃と蒐華で「乱躁滅裂ガール」',
+'199Ei6MdZK4fiSG9zCO8iwrIwpKfLTACQ/1/ズボン3人娘で「7(梅とら)」',
+]
+.map(function(data) {
+	let [ggd_id, info_id, name] = data.split('/');
+	let ggd_url = 'https://drive.google.com/uc?id=' + ggd_id;
+	let local_url = './video/' + name + '.mp4';
+	let info_link = make_info_link(info_id);
+	return {
+		name      : name,
+		ggd_url   : ggd_url,
+		info_id   : info_id,
+		info_link : info_link,
+		local_url : local_url,
+	};
+});
+
+// 動画情報へのリンクを作る
+function make_info_link(info_id)
+{
+	let url = 'https://acax.blog.fc2.com/blog-entry-' + info_id + '.html';
+	let name = '動画情報(' + info_id + ')';
+	let html = '→ <a href="' + url + '" target="info">' + name + '</a>';
+	return html;
+}
+
+// 「再生/停止」ボタンの状態
+let last_cmd = 'pause';
+
+// 自動停止タイマーのID
+let timer_id = -1;
+
+// 自動停止が起きるとtrueになるフラグ
+let auto_stop = false;
+
+// 動画の再生/停止
+function play_or_pause(cmd = null)
+{
+	if (timer_id >= 0) {
+		clearTimeout(timer_id);
+		timer_id = -1;
+	}
+	auto_stop = (cmd == 'auto_stop');
+	if (auto_stop || last_cmd == 'play') {
+		vid.pause();
+		last_cmd = 'pause';
+		document.exitFullscreen();
+	}
+	else {
+		vid.play();
+		last_cmd = 'play';
+		timer_id = setTimeout(play_or_pause, sleep.value * 1000, 'auto_stop');
+	}
+}
+
+// 現在の動作モードを表示
+function show_stat()
+{
+	if (vid.paused)  {
+		if (auto_stop) {
+			stat.value = '状態=自動停止';
+			stat.style.color = 'red';
+			auto_stop = false;
+		}
+		else {
+			stat.value = '状態=停止';
+			stat.style.color = 'black';
+		}
+		sleep.disabled = false;
+	}
+	else {
+		stat.value = '状態=再生中';
+		stat.style.color = 'black';
+		sleep.disabled = true;
+	}
+}
+
+// 現在の位置を表示
+function show_pos()
+{
+	let t = vid.currentTime;
+	let minutes = Math.floor(t / 60).toFixed(0).padStart(2, '0');
+	let seconds = (t - minutes * 60).toFixed(3).padStart(6, '0');
+	pos.value = '位置=' + minutes + ':' + seconds;
+	let rate = isNaN(vid.duration) ? 0 : (t / vid.duration);
+	let m = (posmeter.max - posmeter.min) * rate;
+	if (posmeter.value != m) { posmeter.value = m; }
+}
+
+// 音量を表示
+function show_volume()
+{
+	let rate = vid.muted ? 0 : vid.volume;
+	vol.value = '音量=' + (rate * 100).toFixed(0) + '%';
+	let m = (volmeter.max - volmeter.min) * rate;
+	if (volmeter.value != m) { volmeter.value = m; }
+}
+
+// 音量を変える
+function set_volume(percent)
+{
+	let v = Math.max(0, Math.min(1, percent / 100));
+	if (vid.volume != v) { vid.volume = v; }
+}
+
+// 音量を上下する
+function volume_updown(percent)
+{
+	set_volume(vid.volume * 100 + percent);
+}
+
+// 音量メータ / mousedown イベント処理
+function on_volmeter_mousedown(e)
+{
+	set_volume(e.offsetX / volmeter.clientWidth * 100);
+	e.preventDefault();
+}
+
+// 音量メータ / mousemove イベント処理
+function on_volmeter_mousemove(e)
+{
+	if (volmeter.has_mouse()) {
+		on_volmeter_mousedown(e);
+	}
+}
+
+// 速度リストの現在の選択から、動画の再生速度を設定
+function update_speed()
+{
+	let i = speed.selectedIndex;
+	if (i >= 0 && i < speed.options.length) {
+		vid.playbackRate = speed.value / 100;
+	}
+}
+
+// ファイルリストの初期化
+function init_files()
+{
+	// 動画データからファイルリストを作成
+	let opts = '';
+	for (let i = 0; i < movies.length; i++) {
+		let movie = movies[i];
+		opts += '<option value="' + i + '">' + movie.name + '</option>\n';
+	}
+	files.innerHTML = opts;
+	// 最初の動画を表示
+	files.selectedIndex = 0;
+	load_file();
+}
+
+// ファイルリストをシャッフル
+function shuffle_files()
+{
+	// ファイル数が2以下なら何もしない
+	if (files.length <= 2) {
+		return;
+	}
+	// files.optionsをコピーした配列をシャッフルする
+	const opts = Array.from(files.options);
+	const tail = opts[opts.length - 1];
+	for (let i = opts.length - 1; i >= 0; i--) {
+		let k = Math.floor(Math.random() * (i + 1));
+		let tmp = opts[i];
+		opts[i] = opts[k];
+		opts[k] = tmp;
+	}
+	// 新しい先頭が前回の末尾と一致しないように調整
+	if (opts[0] == tail) {
+		opts.shift(opts.pop());
+	}
+	// opts[]からfiles.optionsを再構築する
+	for (let i = files.length - 1; i >= 0; i--) {
+		files.remove[i];
+	}
+	for (let opt of opts) {
+		files.add(opt);
+	}
+}
+
+// ファイルリストで現在選択中の動画を読み込む
+function load_file()
+{
+	bplay.disabled = true;
+	bhead.disabled = true;
+	bnext.disabled = true;
+
+	let i = files.selectedIndex;
+	if (i >= 0 && i < files.length) {
+		let movie = movies[files.value];
+		memo.innerHTML = movie.info_link;
+		vid.autoplay = (last_cmd == 'play');
+		vid.src = USE_LOCAL ? movie.local_url : movie.ggd_url;
+	}
+	show_stat();
+	show_pos();
+}
+
+// 動画 / loadstart イベント
+function on_vid_loadstart(e)
+{
+	stat.value = '状態=ロード中';
+	stat.style.color = 'red';
+}
+
+// 動画 / loadend イベント
+function on_vid_loadend(e)
+{
+	bplay.disabled = false;
+	bhead.disabled = false;
+	bnext.disabled = false;
+
+	update_speed();
+	show_volume();
+	if (last_cmd == 'pause') {
+		// 停止状態だと先頭フレームが表示されないブラウザへの対応
+		// 先頭フレームにシークすることで先頭フレームを表示する
+		vid.currentTime = 0;
+	}
+	show_stat();
+}
+
+// 次の動画へ進む
+function go_next()
+{
+	if (files.length == 0) {
+		return;
+	}
+	const idx = (files.selectedIndex + 1) % files.length;
+	if (idx == 0) {
+		switch (loop.selectedIndex) {
+		case 0: // 周回=しない
+			last_cmd = 'pause';
+			vid.pause();
+			break;
+		case 1: // 周回=あり
+			break;
+		case 2: // 周回=シャッフル
+			shuffle_files();
+			break;
+		}
+	}
+	files.selectedIndex = idx;
+	load_file();
+}
+
+// 位置メータ / mousedown イベント
+function on_posmeter_mousedown(e)
+{
+	let t = e.offsetX / posmeter.clientWidth * vid.duration;
+	vid.currentTime = t;
+}
+
+// 動画 / seeking イベント
+function on_vid_seeking(e)
+{
+	bhead.disabled = true;
+	bnext.disabled = true;
+	show_stat();
+}
+
+// 動画 / seeked イベント
+function on_vid_seeked(e)
+{
+	bhead.disabled = false;
+	bnext.disabled = false;
+	auto_stop = false;
+	show_pos();
+	show_stat();
+}
+
+// 全画面ボタン / click イベント
+async function fullscreen()
+{
+	await vid.requestFullscreen();
+}
+
+// <meter>要素にマウスキャプチャ処理を付加する
+function init_meter(id)
+{
+	const my_meter = document.querySelector('meter#' + id);
+	let my_mouse_down = false;
+	if (!my_meter) {
+		alert('init_meter(): <meter id="' + id + '"> が存在しません');
+		return;
+	}
+	my_meter.addEventListener('mousedown', function(e)
+	{
+		my_meter.setCapture();
+		my_mouse_down = true;
+	});
+	my_meter.addEventListener('mouseup', function(e)
+	{
+		document.releaseCapture();
+		my_mouse_down = false;
+	});
+	my_meter.has_mouse = function() {
+		return my_mouse_down;
+	};
+}
+
+// 「Loading Now ...」の画像を作成し、そのdataURLを返す
+function get_poster_url()
+{
+	const canvas = document.createElement('canvas');
+	canvas.width = 400;
+	canvas.height = 225;
+	const g = canvas.getContext('2d');
+	g.font = 'bold 30pt sans-serif';
+	g.fillStyle = 'red';
+	g.textAlign = 'center';
+	g.beginPath();
+	g.fillText('Loading Now ...', 200, 120);
+	g.stroke();
+	return canvas.toDataURL();
+}
+
+// 初期化
+function init()
+{
+	// ファイルリスト <select id="files">
+	init_files();
+	files.addEventListener('change', function(e) { load_file(); });
+	// 動画本体 <video id="vid">
+	vid.addEventListener('loadstart',    on_vid_loadstart);
+	vid.addEventListener('loadeddata',   on_vid_loadend);
+	vid.addEventListener('pause',        function(e) { show_stat(); });
+	vid.addEventListener('play',         function(e) { show_stat(); });
+	vid.addEventListener('seeked',       on_vid_seeked);
+	vid.addEventListener('seeking',      on_vid_seeking);
+	vid.addEventListener('timeupdate',   function(e) { show_pos(); });
+	vid.addEventListener('volumechange', function(e) { show_volume(); });
+	vid.addEventListener('ended',        function(e) { go_next(); });
+	vid.poster = get_poster_url();
+	// 全画面ボタン <button id="bfull">
+	bfull.addEventListener('click', function(e) { fullscreen(); });
+	// 音量メーター <meter id="volmeter">
+	init_meter('volmeter');
+	volmeter.addEventListener('mousedown', on_volmeter_mousedown);
+	volmeter.addEventListener('mousemove', on_volmeter_mousemove);
+	// 4つの音量ボタン <button id="v_xxx">
+	v_m10.addEventListener('click', function(e) { volume_updown(-10); });
+	v_m01.addEventListener('click', function(e) { volume_updown(-1);  });
+	v_p01.addEventListener('click', function(e) { volume_updown(1);   });
+	v_p10.addEventListener('click', function(e) { volume_updown(10);  });
+	// 位置メーター <meter id="posmeter">
+	init_meter('posmeter');
+	posmeter.addEventListener('mousedown', on_posmeter_mousedown);
+	// 「先頭から」ボタン <button id="bhead">
+	bhead.addEventListener('click', function(e) { vid.currentTime = 0; });
+	// 「次動画へ」ボタン <button id="bnext">
+	bnext.addEventListener('click', function(e) { go_next(); });
+	// 速度選択 <select id="speed">
+	speed.selectedIndex = 3;  // 初期値は「速度=100%」
+	speed.addEventListener('change', function(e) { update_speed(); });
+	// 周回 <select id="loop">
+	loop.selectedIndex = 2;  // 初期値は「周回=シャッフル」
+	// 自動停止 <select id="sleep">
+	sleep.selectedIndex = 0;  // 初期値は「自動停止=30分」
+	// 再生/停止ボタン <button id="bplay">
+	bplay.addEventListener('click', function(e) { play_or_pause(); });
+	show_stat();
+	show_volume();
+}
+window.onload = init;
+</script>
+<style>
+div#main {
+	margin: 0px auto 0px auto; /* top right bottom left */
+	width: 720px;
+}
+@media screen and (max-width: 760px) {
+	div#main {
+		width: 100%;
+	}
+}
+div#main>div {
+	margin:0px 4px 0px 4px;
+	padding:0px;
+}
+button, meter {
+	margin:0px;
+	padding:0px;
+}
+select, input {
+	margin:0px;
+	padding:2px;
+}
+</style>
+</head>
+<body>
+<div id="main">
+<div style="float:left;">
+	<select id="files" style="width:400px;"></select><br>
+	<div style="height:4px;"><br></div>
+	<video id="vid" preload="metadata" width="400" height="225"></video><br>
+	<div id="memo" style="float:left;"></div>
+	<button id="bfull" type="button" style="float:right;width:60px;">全画面</button>
+</div>
+<div style="float:left;">
+	<input id="vol" type="text" style="width:138px;"><br>
+	<meter id="volmeter" style="width:144px; height:22px;"></meter><br>
+	<button id="v_m10" style="width:36px;" type="button">-10</button><!--
+--><button id="v_m01" style="width:36px;" type="button">-1</button><!--
+--><button id="v_p01" style="width:36px;" type="button">+1</button><!--
+--><button id="v_p10" style="width:36px;" type="button">+10</button><br>
+	<div style="height:10px;"><br></div>
+	<input id="pos" type="text" style="width:138px;"><br>
+	<meter id="posmeter" style="width:144px; height:22px;"></meter><br>
+	<button id="bhead" type="button" style="width:72px;">先頭から</button><!--
+--><button id="bnext" type="button" style="width:72px;">次動画へ</button><br>
+	<div style="height:10px;"><br></div>
+</div>
+<div style="float:left;">
+	<select id="speed" style="width:144px;">
+		<option value="25">速度=25%</option>
+		<option value="50">速度=50%</option>
+		<option value="75">速度=75%</option>
+		<option value="100">速度=100%</option>
+		<option value="125">速度=125%</option>
+		<option value="150">速度=150%</option>
+		<option value="175">速度=175%</option>
+		<option value="200">速度=200%</option>
+	</select><br>
+	<div style="height:10px;"><br></div>
+	<select id="loop" style="width:144px;">
+		<option value="0">周回=しない</option>
+		<option value="1">周回=あり</option>
+		<option value="2">周回=シャッフル</option>
+	</select><br>
+	<div style="height:10px;"><br></div>
+	<select id="sleep" style="width:144px;">
+		<option value="1800">自動停止=30分</option>
+		<option value="3600">自動停止=1時間</option>
+		<option value="7200">自動停止=2時間</option>
+		<option value="15">自動停止=15秒</option>
+	</select><br>
+	<div style="height:10px;"><br></div>
+	<input id="stat" type="text" style="width:138px;"><br>
+	<button id="bplay" type="button" style="width:144px;">再生 / 停止</button><br>
+</div>
+<br style="clear:both;">
+</div>
+</body>
+</html>
