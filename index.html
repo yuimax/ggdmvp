@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>Google Drive Movie Player</title>
+<style>
+body {
+	background: #f0f0f0;
+}
+div#main {
+	width: 580px;
+	margin: 0px auto 0px auto; /* top right bottom left */
+	max-width: 100%;
+}
+iframe#ggdmvp {
+	width: 580px;
+	height: 344px;
+	padding: 0px;
+	border: 1px solid gray;
+	max-width: 100%;
+}
+@media screen and (max-width: 594px) {
+	iframe#ggdmvp {
+		height: 464px;
+	}
+}
+</style>
+</head>
+<body>
+<div id="main">
+<h2 style="margin:8px 0px; padding:0px;">■Google Drive Movie Player</h2>
+<iframe id="ggdmvp" src="./ggdmvp.html" scrolling="no" allowfullscreen="true"></iframe>
+</div>
+</body>
+</html>

@@ -1,18 +1,25 @@
 #------------------------------------
-# ggdmvp v1.0 (2021/02/18) 
+# ggdmvp v1.1 (2021/03/06) 
 #------------------------------------
 
 ■このプログラムについて
 Googleドライブにアップロードした動画ファイルをWebブラウザで連続再生するツールです。
 単なるJavaScriptなので、Webサーバでも、ローカルPCでも動作します。
 
-本ツールに関する情報は、次のブログに載せていく予定です。
-https://acax.blog.fc2.com/
- 
-■実行サンプル
-下記のブログ記事に実行サンプルがあります
-https://acax.blog.fc2.com/blog-entry-16.html
+■パッケージ内のファイル
+ggdmvp.html - Googleドライブ動画プレイヤー
+index.html  - フレーム内表示のサンプル
+readme.txt  - このファイル
+README.md   - GitHub用のREADME
 
+■次のページに実行例があります。
+https://acax.blog.fc2.com/blog-entry-16.html
+https://yuimax.github.io/ggdmvp/
+
+■次のページにソースコードがあります。
+https://bowlroll.net/file/248049
+https://github.com/yuimax/ggdmvp
+ 
 ■動画の差し替え方法
 表示する動画のURLやタイトルは、JavaScript中の次の配列で指定します。
 
@@ -55,9 +62,14 @@ Googleドライブにログインして、自分がアップロードした動�
 スクリプトの改造、流用、再配布はご自由にどうぞ。
 
 ■開発履歴
-2021/02/18 v1.0公開
+2021/02/18 v1.0 
+	初期バージョン
+	BowlRoll で公開
+2021/03/06 v1.1
+	index.htmlを追加
+	GitHub でも公開
 
 ■作者
 yuima
 https://bowlroll.net/user/113952
-
+https://github.com/yuimax
