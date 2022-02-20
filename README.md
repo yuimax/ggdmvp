@@ -3,7 +3,8 @@
 
 概要：Googleドライブに置いた動画ファイルを連続再生する<br>
 
-実例：[https://yuimax.github.io/ggdmvp/](https://yuimax.github.io/ggdmvp/)
+実例：https://yuimax.github.io/ggdmvp/<br>
+別名：https://git.pilikala.net/ggdvmp/<br>
 
 言語：HTML, JavaScript<br>
 
