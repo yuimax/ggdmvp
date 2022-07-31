@@ -5,11 +5,12 @@
 <meta name="viewport" content="width=device-width">
 <title>Google Drive Movie Player</title>
 
-<!-- ggdmvp v1.2 (2021/03/22) -->
+<!-- ggdmvp v1.21 (2022/07/31) -->
 <script src="./movie_data.js"></script>
 
 <script>
 const USE_LOCAL = false;
+const SHUFFLE_ON_INIT = true;
 
 // 動画データの設定
 const movies = movie_data.map(function(data) {
@@ -155,6 +156,10 @@ function init_files()
 		opts += '<option value="' + i + '">' + movie.name + '</option>\n';
 	}
 	files.innerHTML = opts;
+	// シャッフル
+	if (SHUFFLE_ON_INIT) {
+		shuffle_files();
+	}
 	// 最初の動画を表示
 	files.selectedIndex = 0;
 	load_file();
@@ -367,7 +372,7 @@ function init()
 	// 周回 <select id="loop">
 	loop.selectedIndex = 2;  // 初期値は「周回=シャッフル」
 	// 自動停止 <select id="sleep">
-	sleep.selectedIndex = 0;  // 初期値は「自動停止=30分」
+	sleep.selectedIndex = 1;  // 初期値は「自動停止=1時間」
 	// 再生/停止ボタン <button id="bplay">
 	bplay.addEventListener('click', function(e) { play_or_pause(); });
 	show_stat();
@@ -454,4 +459,3 @@ select, input {
 </div>
 </body>
 </html>
-
