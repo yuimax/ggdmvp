@@ -1,6 +1,7 @@
 const SHUFFLE_ON_INIT = false;
 
 const movie_data = [
+'1XCVSDZouzCIk_Vc_AJ_a91yuk4CVhAVW/46/うに子で「カムパネルラ」',
 '1cJEVq_j8XIyk65S7lSjc2Oox27ucYUuN/45/近村麗愛で「Te_Amo」',
 '14iPIVqWVak4B3QE_0CquATOA0Kim2hN9/44/ていらん式初音ミクで「神っぽいな」',
 '1XYGaor3R2XJImvSoGqPi4nClKSDQwQOs/43/ふっこで「TheLastCrusade」',
