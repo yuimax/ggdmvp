@@ -1,8 +1,8 @@
 const SHUFFLE_ON_INIT = false;
 
 const movie_data = [
-'1fCTdMe2BbeIGT2JrPrxAJEn8wpGbIIyM/51/STONE式ミクで「ハッピーホロウと神様倶楽部」', // 4Mbps
-//'1y39VTtapQYLiBvcc-lgp_AHFID2ltc7p/51/STONE式ミクで「ハッピーホロウと神様倶楽部」', // 2Mbps
+//'1fCTdMe2BbeIGT2JrPrxAJEn8wpGbIIyM/51/STONE式ミクで「ハッピーホロウと神様倶楽部」',
+'1y39VTtapQYLiBvcc-lgp_AHFID2ltc7p/51/STONE式ミクで「ハッピーホロウと神様倶楽部」',
 '1DVeqXAbXYGxck5LybM-lRbJG6Jb0xWF7/50/STONE式亞北ネルで「幸福な死を」',
 '1XCVSDZouzCIk_Vc_AJ_a91yuk4CVhAVW/47/うに子で「カムパネルラ」',
 '1cJEVq_j8XIyk65S7lSjc2Oox27ucYUuN/45/近村麗愛で「Te_Amo」',
