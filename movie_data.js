@@ -1,7 +1,8 @@
 const SHUFFLE_ON_INIT = false;
 
 const movie_data = [
-'1y39VTtapQYLiBvcc-lgp_AHFID2ltc7p/51/STONE式ミクで「ハッピーホロウと神様倶楽部」',
+'1fCTdMe2BbeIGT2JrPrxAJEn8wpGbIIyM/51/STONE式ミクで「ハッピーホロウと神様倶楽部」', // 4Mbps
+//'1y39VTtapQYLiBvcc-lgp_AHFID2ltc7p/51/STONE式ミクで「ハッピーホロウと神様倶楽部」', // 2Mbps
 '1DVeqXAbXYGxck5LybM-lRbJG6Jb0xWF7/50/STONE式亞北ネルで「幸福な死を」',
 '1XCVSDZouzCIk_Vc_AJ_a91yuk4CVhAVW/47/うに子で「カムパネルラ」',
 '1cJEVq_j8XIyk65S7lSjc2Oox27ucYUuN/45/近村麗愛で「Te_Amo」',
@@ -21,7 +22,7 @@ const movie_data = [
 '1lx72EtVadxpbkghbWuVy4DLmhtIP-oRc/31/オマールとガンバとクルヴェットで「踊」',
 //'1UZ7CmECqmRt5yXSK93Rt-E-0wKWHk02f/30/Vacantie様で「Mad_Lovers」',
 //'1J-JlQsc1IbLOiq6zyCTkwZnIM1eKL-Wj/29/STONE式MEIKOで「雲の遺跡」',
-'1SZJCE54FjlHCp7R1ctyjaOB0kteT29zb/--/カウコさんが天の岩戸で「トキヲ・ファンカ」',
+'1SZJCE54FjlHCp7R1ctyjaOB0kteT29zb/28/カウコさんが天の岩戸で「トキヲ・ファンカ」',
 //'1qTdSX4HHlf6czya3SrXjkhK8JNhhIfBy/28/カウコさんが天の岩戸で「トキヲ・ファンカ」',
 '1O_aGIm99Jhef534Jdq0VW3yWVravQcLc/27/ウシ娘カウコさんで「ヒガン」',
 '1tOEBVVk22Om4QFZqtR9J-ZjNN9ypL0EO/26/もぶ太郎と姐さんたちで「ペリー来航」',
