@@ -1,7 +1,7 @@
 const SHUFFLE_ON_INIT = false;
 
 const movie_data = [
-'1k-RB0PHUsyEEx88zHL9L40O0g1uimRjA/28/カウコさんが天の岩戸で「トキヲ・ファンカ」',
+//'1k-RB0PHUsyEEx88zHL9L40O0g1uimRjA/28/カウコさんが天の岩戸で「トキヲ・ファンカ」',
 '1JB52up5-nz79jhl_XIA0pQ4EHkg7OYbU/--/AB10Bバニーで「Masked_bitcH」',
 '1y39VTtapQYLiBvcc-lgp_AHFID2ltc7p/51/STONE式ミクで「ハッピーホロウと神様倶楽部」',
 '1DVeqXAbXYGxck5LybM-lRbJG6Jb0xWF7/50/STONE式亞北ネルで「幸福な死を」',
