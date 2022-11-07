@@ -1,6 +1,7 @@
 const SHUFFLE_ON_INIT = false;
 
 const movie_data = [
+'1rJmxKZ2yIaH-puM-eJIg8Tj3KgmoYSnI/39/ガリ子で「WAVEFILE」',
 '1k-RB0PHUsyEEx88zHL9L40O0g1uimRjA/28/カウコさんが天の岩戸で「トキヲ・ファンカ」',
 '1JB52up5-nz79jhl_XIA0pQ4EHkg7OYbU/--/AB10Bバニーで「Masked_bitcH」',
 '1y39VTtapQYLiBvcc-lgp_AHFID2ltc7p/51/STONE式ミクで「ハッピーホロウと神様倶楽部」',
@@ -12,7 +13,6 @@ const movie_data = [
 '1sQXTV6yxI2xz7DxhFA8JJTQPxuiZG90L/42/VRoidで「キライ・キライ・ジガヒダイ！」',
 '1AaMeeUqD4nL19Er2Obi2KBv3zy2S6GXk/41/VRoidで「恋愛裁判」',
 '1c5SwK_pAeh34OpAqX3GQnAJLuKOYSBDr/40/チンピラAで「シャンティ」',
-'1rJmxKZ2yIaH-puM-eJIg8Tj3KgmoYSnI/39/ガリ子で「WAVEFILE」',
 '1dAOmiK59aO-qT6dKsQ4WcWqZzaVrrsoJ/38/ふっこで「しかばねの踊り」',
 '1HqvkwIEOB2nqxfEJSO7BiIMvPK1MD6su/37/VRoidで「回生」',
 '1lpCjQD1v4buMhYkkqS7wIAO5Z_P1CoHf/36/ものべいろはで「Gimme×Gimme」',
