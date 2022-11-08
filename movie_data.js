@@ -1,9 +1,6 @@
 const SHUFFLE_ON_INIT = false;
 
 const movie_data = [
-'1rJmxKZ2yIaH-puM-eJIg8Tj3KgmoYSnI/39/ガリ子で「WAVEFILE」',
-'1k-RB0PHUsyEEx88zHL9L40O0g1uimRjA/28/カウコさんが天の岩戸で「トキヲ・ファンカ」',
-'1JB52up5-nz79jhl_XIA0pQ4EHkg7OYbU/--/AB10Bバニーで「Masked_bitcH」',
 '1y39VTtapQYLiBvcc-lgp_AHFID2ltc7p/51/STONE式ミクで「ハッピーホロウと神様倶楽部」',
 '1DVeqXAbXYGxck5LybM-lRbJG6Jb0xWF7/50/STONE式亞北ネルで「幸福な死を」',
 '1XCVSDZouzCIk_Vc_AJ_a91yuk4CVhAVW/47/うに子で「カムパネルラ」',
@@ -13,6 +10,7 @@ const movie_data = [
 '1sQXTV6yxI2xz7DxhFA8JJTQPxuiZG90L/42/VRoidで「キライ・キライ・ジガヒダイ！」',
 '1AaMeeUqD4nL19Er2Obi2KBv3zy2S6GXk/41/VRoidで「恋愛裁判」',
 '1c5SwK_pAeh34OpAqX3GQnAJLuKOYSBDr/40/チンピラAで「シャンティ」',
+'1rJmxKZ2yIaH-puM-eJIg8Tj3KgmoYSnI/39/ガリ子で「WAVEFILE」',
 '1dAOmiK59aO-qT6dKsQ4WcWqZzaVrrsoJ/38/ふっこで「しかばねの踊り」',
 '1HqvkwIEOB2nqxfEJSO7BiIMvPK1MD6su/37/VRoidで「回生」',
 '1lpCjQD1v4buMhYkkqS7wIAO5Z_P1CoHf/36/ものべいろはで「Gimme×Gimme」',
@@ -23,6 +21,7 @@ const movie_data = [
 '1lx72EtVadxpbkghbWuVy4DLmhtIP-oRc/31/オマールとガンバとクルヴェットで「踊」',
 '1UZ7CmECqmRt5yXSK93Rt-E-0wKWHk02f/30/Vacantie様で「Mad_Lovers」',
 '1J-JlQsc1IbLOiq6zyCTkwZnIM1eKL-Wj/29/STONE式MEIKOで「雲の遺跡」',
+'1k-RB0PHUsyEEx88zHL9L40O0g1uimRjA/28/カウコさんが天の岩戸で「トキヲ・ファンカ」',
 '1O_aGIm99Jhef534Jdq0VW3yWVravQcLc/27/ウシ娘カウコさんで「ヒガン」',
 '1tOEBVVk22Om4QFZqtR9J-ZjNN9ypL0EO/26/もぶ太郎と姐さんたちで「ペリー来航」',
 '1KbxfGIBWtNwUnMSzLnTxa1or1E18QovE/25/sdPBRシェーダのテスト「妄想疾患■ガール」',
@@ -31,6 +30,7 @@ const movie_data = [
 '1ef6Y6KPu93XZJ-QJFb_OFWydphD3ttHN/--/うに子で「失敗作少女」',
 '1bPrNCNUyGFOeMTMmjN09ujbz82a_fci_/22/もぶ158Aで「アディショナルメモリー」',
 '1AynDUHXUPUAkThbecTuExQPtYcpzsAyZ/21/AB10Bバニーで「モザイクロール」',
+'1JB52up5-nz79jhl_XIA0pQ4EHkg7OYbU/--/AB10Bバニーで「Masked_bitcH」',
 '1mGRXTyKUlntcY9WTvKPmiA1zZb2cZ-zL/18/AB10Bで「ジャンキーナイトタウンオーケストラ」',
 '1UsuHH0pxFWcC27ViXctLOruP_8Ud4nmf/17/モブ子さんで「ムラサキ」',
 //'1T8g3sc00IXhnvPOe2uvMd5JTiYoUS0qt/12/AB10で「毒占欲」',
