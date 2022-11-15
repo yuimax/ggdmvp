@@ -1,4 +1,5 @@
 const SHUFFLE_ON_INIT = false;
+const USE_LOCAL = false;
 
 const movie_data = [
 '1SLsngsc412MZ2P6ZFPBmHV2t4UwY3mYH/52/ていらん式博麗霊夢で「百鬼祭」',
