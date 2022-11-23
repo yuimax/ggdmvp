@@ -1,7 +1,8 @@
-const SHUFFLE_ON_INIT = false;
-const USE_LOCAL = false;
-
+const SHUFFLE_ON_INIT = false; 
+const USE_LOCAL = false; 
+ 
 const movie_data = [
+'1uhAETA10v1VAQuIQanJ7h0QepDv3JymK/--/サリーとアンで「アイデンティティ」',
 '1SLsngsc412MZ2P6ZFPBmHV2t4UwY3mYH/52/ていらん式博麗霊夢で「百鬼祭」',
 '1y39VTtapQYLiBvcc-lgp_AHFID2ltc7p/51/STONE式ミクで「ハッピーホロウと神様倶楽部」',
 '1DVeqXAbXYGxck5LybM-lRbJG6Jb0xWF7/50/STONE式亞北ネルで「幸福な死を」',
