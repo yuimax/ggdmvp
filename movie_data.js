@@ -2,6 +2,7 @@ const SHUFFLE_ON_INIT = false;
 const USE_LOCAL = false; 
 
 const movie_data = [
+'12hrJLcw_Rw_fv_U3cRY8mkzu2F7K8qD3/59/うに式ミクで「ハートアラモード」',
 '1S54TbVvx1ziSyfTbY5ZG5A3ax75J6W1n/57/稲葉てゐで「キメラ」',
 '1CqXziolk4wXD7x7xItllLPYDIXeIp68A/56/Vacantie様と「ジブラ」',
 '1s5QJk8tozpGZLGgidtslO0PWEEoD4rTz/55/VRoidで「ド屑」',
