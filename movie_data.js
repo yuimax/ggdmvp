@@ -3,7 +3,7 @@ const USE_LOCAL = false;
 
 const movie_data = [
 '1DxAQF6mlhhMBeLWJxUg06_BtDMXVIT38/61/つねかわ式4頭身ミクで「ドーナツホール」',
-'1OclJePFLpE0KaGXJ4ZthjiTvsXBGKvKs/--/つねかわ式4頭身ミクで「うっせえわ」',
+//'1OclJePFLpE0KaGXJ4ZthjiTvsXBGKvKs/--/つねかわ式4頭身ミクで「うっせえわ」',
 //'1SxSp9oBUrieTmoyOJdLyhhXAAXyqL-ln/60/つねかわ式4頭身ミクで「サラマンダー」',
 '12hrJLcw_Rw_fv_U3cRY8mkzu2F7K8qD3/59/うに式ミクで「ハートアラモード」',
 '1S54TbVvx1ziSyfTbY5ZG5A3ax75J6W1n/57/因幡てゐで「キメラ」',
