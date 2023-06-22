@@ -2,6 +2,7 @@ const SHUFFLE_ON_INIT = false;
 const USE_LOCAL = false; 
 
 const movie_data = [
+'1zVfiQU5DuFPB5EI503NcAAGWRZs3e9yM/70/VRoidで「ライアーダンス」',
 '1MFk3LfPbXB94DGq-zQMCGnmKhNSqJvvT/69/VRoidで「Lamb」',
 '1WvD62Fdli8e-jU4qRwBFkNAWBpBeaGRx/68/VRoidで「EX-GIRL」',
 '1L7JQRI_GV5uN3vvP3FqUxupuLfzHOe8O/67/VRoidで「嘘とぬいぐるみ」',
