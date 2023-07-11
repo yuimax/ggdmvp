@@ -2,6 +2,7 @@ const SHUFFLE_ON_INIT = false;
 const USE_LOCAL = false; 
 
 const movie_data = [
+'1zBNv1wD-f107vkf80FNA3mkNMCsM56NX/71/クルヴェットwith袋メンで「天使の翼。」',
 '1zVfiQU5DuFPB5EI503NcAAGWRZs3e9yM/70/VRoidで「ライアーダンス」',
 '1MFk3LfPbXB94DGq-zQMCGnmKhNSqJvvT/69/VRoidで「Lamb」',
 '1WvD62Fdli8e-jU4qRwBFkNAWBpBeaGRx/68/VRoidで「EX-GIRL」',
