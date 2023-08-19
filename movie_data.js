@@ -2,6 +2,7 @@ const SHUFFLE_ON_INIT = false;
 const USE_LOCAL = false; 
 
 const movie_data = [
+'1ErRS38MDZp1cmOw6qplwQh1cHlTszAIe/74/近村麗愛で「少女ふぜゐ」',
 '1owwJ9JI29VReOupgqJ6y75MvI_eT7jxO/73/フリモメン達で「LaLaL危」',
 '1Jqbm0BZS1dMXZQuhS0j9D4dGO1GnqVSV/72/つねかわ式4頭身ミクで「PASSION」',
 '1zBNv1wD-f107vkf80FNA3mkNMCsM56NX/71/クルヴェットwith袋メンで「天使の翼。」',
