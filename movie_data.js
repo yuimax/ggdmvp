@@ -2,6 +2,7 @@ const SHUFFLE_ON_INIT = false;
 const USE_LOCAL = false; 
 
 const movie_data = [
+'1JB52up5-nz79jhl_XIA0pQ4EHkg7OYbU/77/AB10Bバニーで「Masked_bitcH」',
 '11gTyeyrobydS3c3FBHZBWBtCGqE3-3mJ/75/VRoid太っ腹テスト「アブラカダブラ」',
 '1ErRS38MDZp1cmOw6qplwQh1cHlTszAIe/74/近村麗愛で「少女ふぜゐ」',
 '1owwJ9JI29VReOupgqJ6y75MvI_eT7jxO/73/フリモメン達で「LaLaL危」',
@@ -52,7 +53,6 @@ const movie_data = [
 '1ef6Y6KPu93XZJ-QJFb_OFWydphD3ttHN/--/うに子で「失敗作少女」',
 '1bPrNCNUyGFOeMTMmjN09ujbz82a_fci_/22/もぶ158Aで「アディショナルメモリー」',
 '1AynDUHXUPUAkThbecTuExQPtYcpzsAyZ/21/AB10Bバニーで「モザイクロール」',
-'1JB52up5-nz79jhl_XIA0pQ4EHkg7OYbU/--/AB10Bバニーで「Masked_bitcH」',
 '1mGRXTyKUlntcY9WTvKPmiA1zZb2cZ-zL/18/AB10Bで「ジャンキーナイトタウンオーケストラ」',
 '1UsuHH0pxFWcC27ViXctLOruP_8Ud4nmf/17/モブ子さんで「ムラサキ」',
 //'1T8g3sc00IXhnvPOe2uvMd5JTiYoUS0qt/12/AB10で「毒占欲」',
