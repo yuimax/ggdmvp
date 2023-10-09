@@ -3,7 +3,7 @@
 
 概要：Googleドライブに置いた動画ファイルを連続再生する<br>
 
-実例：https://git.pilikala.net/ggdmvp/<br>
+実例：https://bagof.crap.jp/ggdmvp/<br>
 
 言語：HTML, JavaScript<br>
 
